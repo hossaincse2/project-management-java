@@ -28,78 +28,21 @@ public class ReportService {
 
     @Autowired
     private ProjectRepository projectRepository;
-
-
-//    public String exportReport(String reportFormat) throws FileNotFoundException, JRException {
-//        String path = "C:\\Users\\hossain\\Desktop\\Report";
-//        List<Project> projects = projectRepository.findAll();
-//        //load file and compile it
-//        File file = ResourceUtils.getFile("classpath:projects.jrxml");
-//        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-//        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(projects);
-//        Map<String, Object> parameters = new HashMap<>();
-//        parameters.put("createdBy", "CNS Project Management");
-//        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-//        if (reportFormat.equalsIgnoreCase("html")) {
-//            JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "\\projects.html");
-//        }
-//        if (reportFormat.equalsIgnoreCase("pdf")) {
-//            JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\projects.pdf");
-//        }
-//
-//        return "report generated in path : " + path;
-//    }
-//    private JasperPrint getJasperPrint(List<Project> projects, String resourceLocation) throws FileNotFoundException, JRException {
-//        File file = ResourceUtils.getFile(resourceLocation);
-//        JasperReport jasperReport = JasperCompileManager
-//                .compileReport(file.getAbsolutePath());
-//        JRBeanCollectionDataSource dataSource = new
-//                JRBeanCollectionDataSource(projects);
-//        Map<String, Object> parameters = new HashMap<>();
-//        parameters.put("createdBy","Hossain");
-//
-//        JasperPrint jasperPrint = JasperFillManager
-//                .fillReport(jasperReport,parameters,dataSource);
-//
-//        return jasperPrint;
-//    }
-//
-//
-//    private Path getUploadPath(String fileFormat, JasperPrint jasperPrint, String fileName) throws IOException, JRException {
-//        String uploadDir = StringUtils.cleanPath("./generated-reports");
-//        Path uploadPath = Paths.get(uploadDir);
-//        if (!Files.exists(uploadPath)){
-//            Files.createDirectories(uploadPath);
-//        }
-//        //generate the report and save it in the just created folder
-//        if (fileFormat.equalsIgnoreCase("pdf")){
-//            JasperExportManager.exportReportToPdfFile(
-//                    jasperPrint, uploadPath+fileName
-//            );
-//        }
-//
-//        return uploadPath;
-//    }
-//
-//    private String getPdfFileLink(String uploadPath){
-//        return uploadPath+"/"+"projects.pdf";
-//    }
-//    public String generateReport(String fileFormat) throws JRException, IOException {
-//        List<Project> projects = projectRepository.findAll();
-//        //load the file and compile it
-//        String resourceLocation = "classpath:projects.jrxml";
-//        JasperPrint jasperPrint = getJasperPrint(projects,resourceLocation);
-//        //create a folder to store the report
-//        String fileName = "/"+"projects.pdf";
-//        Path uploadPath = getUploadPath(fileFormat, jasperPrint, fileName);
-//        //create a private method that returns the link to the specific pdf file
-//
-//        return getPdfFileLink(uploadPath.toString());
-//    }
-
     // export
     public void exportReport(OutputStream outputStream) throws JRException, IOException, SQLException{
-        JasperPrint jasperPrint = projectRepository.exportPDF("pdf");
+        List<Project> projects =  projectRepository.findAll();
+        File file = ResourceUtils.getFile("classpath:projects.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(projects);
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("createdBy", "CNS Project Management");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+//            if (reportFormat.equalsIgnoreCase("html")) {
+//                JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "\\projects.html");
+//            }
+//            if (reportFormat.equalsIgnoreCase("pdf")) {
+//                JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\projects.pdf");
+//            }
         JasperExportManager.exportReportToPdfStream(jasperPrint,outputStream);
     }
 }

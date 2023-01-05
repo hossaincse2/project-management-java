@@ -15,8 +15,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +57,13 @@ public class ProjectController {
 //        String fileLink = reportService.generateReport(format);
 //        return "redirect:/"+fileLink;
 //    }
-
+    @RequestMapping(value ="/report", method = RequestMethod.GET)
+    public void generateReport(HttpServletResponse response) throws IOException, JRException, SQLException {
+        response.setContentType("application/x-download");
+        response.setHeader("Content-Disposition", String.format("inline; filename=\"project.pdf\""));
+        OutputStream out = response.getOutputStream();
+        reportService.exportReport(out);
+    }
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addProjectPage(Model model){
         model.addAttribute("project",new Project());

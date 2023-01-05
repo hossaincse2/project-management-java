@@ -45,11 +45,5 @@ public class ProjectRestController {
     public User UserDataByUserName(@PathVariable(value = "username") String username){
             return userService.getByUsername(username);
     }
-    @GetMapping(value = "/api/v1/report")
-    public void generateReport(HttpServletResponse response) throws IOException, JRException, SQLException {
-        response.setContentType("application/x-download");
-        response.setHeader("Content-Disposition", String.format("attachment; filename=\"project.pdf\""));
-        OutputStream out = response.getOutputStream();
-        reportService.exportReport(out);
-    }
+
 }

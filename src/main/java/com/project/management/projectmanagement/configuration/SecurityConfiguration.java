@@ -72,8 +72,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/webjars/**",
                         "/api/v1/projects",
                         "/api/v1/users/{id}",
-                        "/api/v1/user-by-user-name/{username}",
-                        "/api/v1/report"
+                        "/api/v1/user-by-user-name/{username}"
                 )
                 .permitAll()
                 .anyRequest().authenticated()
