@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="projects" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7b756ad5-1d42-4264-ac73-9dc13b132b36">
+    <field name="projectName" class="java.lang.String">
+    </field>
+    <field name="projectIntro" class="java.lang.String">
+    </field>
+    <field name="projectWoner" class="java.lang.String">
+    </field>
+    <background>
+        <band/>
+    </background>
+    <title>
+        <band height="72">
+            <frame>
+                <reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="1d702dd0-f935-46a3-bb87-c7db90532291"/>
+                <staticText>
+                    <reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="b6e2dc17-e60b-49a1-ae5b-78a17ec775f7"/>
+                    <textElement>
+                        <font size="34" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[CNS Project Management]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="2a254948-3196-4dc2-a4fd-acae78855472"/>
+                    <textElement textAlignment="Right">
+                        <font size="14" isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Project Report]]></text>
+                </staticText>
+            </frame>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="13"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="21">
+            <line>
+                <reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="9311c8e9-04b1-4158-9b5e-02cd509b431c"/>
+            </line>
+            <staticText>
+                <reportElement x="26" y="0" width="100" height="21" uuid="e5a63601-f9fb-46f0-94a0-787147ad7feb">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="84f2e0b8-a7d5-4956-93b3-8e95e2e0ca20"/>
+                </reportElement>
+                <text><![CDATA[Project Name]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="237" y="0" width="100" height="21" uuid="706967bb-79d3-4540-bd28-a25471eeaa09">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="65963bc8-4c72-4adb-9b72-874074308625"/>
+                </reportElement>
+                <text><![CDATA[Project Intro]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="449" y="0" width="100" height="21" uuid="70cd254d-5eac-47aa-a2db-8a687c3afa1a">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="83d3d6a8-fcc7-490d-9af3-6d9420f0d7ac"/>
+                </reportElement>
+                <text><![CDATA[Project Woner]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="40">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="-20" y="33" width="592" height="1" uuid="43d61393-0c39-4433-b0a4-0a221b201874"/>
+            </line>
+            <textField>
+                <reportElement x="26" y="5" width="100" height="30" uuid="7e134c50-8643-4449-97df-b3554d605787">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="84f2e0b8-a7d5-4956-93b3-8e95e2e0ca20"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{projectName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="237" y="10" width="100" height="30" uuid="de216634-6782-44d0-b691-2dbead24d4a8">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="65963bc8-4c72-4adb-9b72-874074308625"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{projectIntro}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="449" y="9" width="100" height="30" uuid="71f2b6d3-8ffe-4611-a38a-04a36196dbf7">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="83d3d6a8-fcc7-490d-9af3-6d9420f0d7ac"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{projectWoner}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band/>
+    </columnFooter>
+    <pageFooter>
+        <band height="17">
+            <textField>
+                <reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="33c6e519-2fc4-4220-85a1-aec1ecb736d5"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="7bab1392-ae01-400b-b7d2-055f5075eaab"/>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <textField pattern="EEEEE dd MMMMM yyyy">
+                <reportElement x="0" y="4" width="100" height="13" uuid="9acaeb0f-c0cc-4bec-8196-dbb97bf6a1ef"/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+    <summary>
+        <band/>
+    </summary>
+</jasperReport>
